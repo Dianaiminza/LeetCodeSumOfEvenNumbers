@@ -1,0 +1,26 @@
+public class Solution {
+    public int[] SumEvenAfterQueries(int[] nums, int[][] queries) {
+
+        var sum=nums.Where(x => x % 2 ==0).Sum();
+        var result=new List<int>();
+
+        foreach(var query in queries){
+
+            var val=query[0];
+            var index=query[1];
+
+            if(nums[index] % 2 == 0){
+                sum -=nums[index];
+            }
+
+            nums[index] += val;
+
+            if(nums[index] % 2 == 0){
+                sum += nums[index];
+            }
+             result.Add(sum);
+        }
+       return result.ToArray();
+        
+    }
+}
